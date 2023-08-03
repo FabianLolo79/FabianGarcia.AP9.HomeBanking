@@ -8,71 +8,47 @@ import javax.persistence.Id;
 
 @Entity
 public class Client {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
     private long id;
-    private String name;
+    private String firstName;
     private String lastName;
-    private String dni;
-
     private String email;
 
-    public Client(){  }
+    public Client () {  }
 
-    public Client(String name, String lastName, String dni, String email)
-    {
-        this.name = name;
+    public Client (String firstName, String lastName, String email) {
+        this.firstName = firstName;
         this.lastName = lastName;
-        this.dni = dni;
         this.email = email;
     }
 
-    public long getId()
-    {
+    public long getId() {
         return id;
     }
-
-    public String getName()
-    {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name)
-    {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLastName()
-    {
+    public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName)
-    {
+    public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
-    public String getDni()
-    {
-        return dni;
-    }
-
-    public void setDni(String dni)
-    {
-        this.dni = dni;
-    }
-
-    public String getEmail()
-    {
+    public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email)
-    {
+    public void setEmail(String email) {
         this.email = email;
     }
-
 
 }

@@ -20,9 +20,14 @@ public class HomebankingApplication {
 	{
 		return (args) ->
 		{
-			Client client =  new Client("Fabian","Garcia", "12354646", "fabiian@gmail.com");
+			Client client =  new Client("Fabián", "García", "fabii@gmail.com");
+			Client client1 = new Client();
+			client1.setFirstName("Paz");
+			client1.setLastName("García");
+			client1.setEmail("pachu@gmail.com");
 
 			clientRepository.save(client);
+			clientRepository.save(client1);
 		};
 	}
 
