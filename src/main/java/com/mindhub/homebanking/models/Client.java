@@ -59,9 +59,18 @@ public class Client {
     }
 
     public void addAcount(Account account) {
-        account.setClientId(this);
+        account.setClientId(this);  // setClientId(this);
         accounts.add(account);
     }
+
+
+
+
+
+
+
+
+
 
 
 }
