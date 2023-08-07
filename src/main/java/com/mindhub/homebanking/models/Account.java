@@ -7,6 +7,9 @@ import java.time.LocalDate;
 
 @Entity
 public class Account {
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="client_id") //campo nuevo que se crea en la BD y aparece null aún
+    private Client clientId;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
@@ -49,6 +52,15 @@ public class Account {
 
     public void setBalance(double balance) {
         this.balance = balance;
+    }
+
+
+    public Client getClientId() {
+        return clientId;
+    }
+
+    public void setClientId(Client clientId) {
+        this.clientId = clientId;
     }
 
 
