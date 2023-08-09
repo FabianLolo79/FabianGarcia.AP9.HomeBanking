@@ -33,7 +33,7 @@ public class HomebankingApplication {
 			Client client =  new Client("Melba", "Morel", "melba@mindhub.com");
 			clientRepository.save(client);
 
-			//intancio las 2 cuentas account and account1
+			//intancio las 2 cuentas: account and account1
 			Account account = new Account("VIN001", LocalDate.now(), 5000);
 			client.addAccount(account);//agrego la cuenta account a client siempre antes de salvar en BD de la linea de ajoba
 			accountRepository.save(account);
@@ -54,8 +54,13 @@ public class HomebankingApplication {
 			account.addTransaction(transaction2);
 			transactionRepository.save(transaction2);
 
-			//
-
+			//instancia de nuevas transacciones a la acocunt1
+			Transaction transaction3 = new Transaction(TransactionType.CREDIT, 14400, "Alquiler recibido", LocalDate.now());
+			account1.addTransaction(transaction3);
+			transactionRepository.save(transaction3);
+			Transaction transaction4 = new Transaction(TransactionType.CREDIT, 600, "recibo de palangana vendida", LocalDate.now());
+			account1.addTransaction(transaction4);
+			transactionRepository.save(transaction4);
 
 			//Agrego dos clientes nuevos
 			Client client1 = new Client("Fabian", "Garcia", "fabianiio@gmail.com");
