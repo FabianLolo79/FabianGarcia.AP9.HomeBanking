@@ -19,7 +19,7 @@ public class Transaction {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="accountId") //campo nuevo que se crea en la BD y aparece null aún
-    private Account accountId;
+    private Account account;
 
 
     public Transaction()
@@ -79,13 +79,13 @@ public class Transaction {
         this.date = date;
     }
 
-    public Account getAccountId(Account account)
+    public Account getAccount(Account account)
     {
-        return accountId;
+        return account;
     }
 
-    public void setAccountId(Account accountId)
+    public void setAccount(Account account)
     {
-        this.accountId = accountId;
+        this.account = account;
     }
 }

@@ -21,7 +21,7 @@ public class Account {
     private LocalDate creationDate;
     private double balance;
 
-    @OneToMany(mappedBy="accountId", fetch=FetchType.EAGER)
+    @OneToMany(mappedBy="account", fetch=FetchType.EAGER)
     private Set<Transaction> transactions = new HashSet<>();
 
     public Account() {
@@ -86,7 +86,7 @@ public class Account {
 
     public void addTransaction(Transaction transaction)
     {
-        transaction.setAccountId(this);  // setClientId(this);
+        transaction.setAccount(this);  // setClientId(this);
         transactions.add(transaction);
     }
 }

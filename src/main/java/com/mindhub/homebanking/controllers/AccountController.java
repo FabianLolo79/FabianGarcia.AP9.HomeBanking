@@ -1,10 +1,8 @@
 package com.mindhub.homebanking.controllers;
 
-import com.mindhub.homebanking.dtos.ClientDTO;
-import com.mindhub.homebanking.dtos.TransactionDTO;
-import com.mindhub.homebanking.models.Client;
-import com.mindhub.homebanking.models.Transaction;
-import com.mindhub.homebanking.repositories.TransactionRepository;
+import com.mindhub.homebanking.dtos.AccountDTO;
+import com.mindhub.homebanking.models.Account;
+import com.mindhub.homebanking.repositories.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,27 +16,26 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api")
 public class AccountController {
-
     @Autowired
-    private TransactionRepository transactionRepository;
+    private AccountRepository accountRepository;
 
     @GetMapping("/accounts")
-    public List<TransactionDTO> getTransactions()
+    public List<AccountDTO> getAccounts()
     {
-        List<Transaction> allTransactions = transactionRepository.findAll();
+        List<Account> allAccounts = (List<Account>) accountRepository;
 
         // funcion map() recorre
-        List<TransactionDTO> converToListDto = allTransactions
+        List<AccountDTO> converToListDto = allAccounts
                 .stream()
-                .map(transaction -> new TransactionDTO(transaction))
+                .map(account -> new AccountDTO(account))
                 .collect(Collectors.toList());
         return converToListDto;
     }
 
-    @GetMapping(" /accounts/{id}")
-    public TransactionDTO getTransactionById(@PathVariable Long id)
+    @GetMapping("/accounts/{id}")
+    public AccountDTO getTransactionById(@PathVariable Long id)
     {
-        Optional<Transaction> transactionOptional = transactionRepository.findById(id);
-        return new TransactionDTO(transactionOptional.get());
+        Optional<Account> accountOptional = accountRepository.findById(id);
+        return new AccountDTO(accountOptional.get());
     }
 }

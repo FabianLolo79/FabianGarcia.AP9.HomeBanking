@@ -43,7 +43,7 @@ public class HomebankingApplication {
 			accountRepository.save(account1);
 
 
-			//instancia de nuevas transaccione en la account VIN001 de client
+			//instancia de nuevas transacciones en la account VIN001 de client
 			Transaction transaction = new Transaction(TransactionType.CREDIT, 500, "sueldo", LocalDate.now());
 			account.addTransaction(transaction);
 			transactionRepository.save(transaction);
@@ -53,6 +53,8 @@ public class HomebankingApplication {
 			Transaction transaction2 = new Transaction(TransactionType.DEBIT, 500, "pago internet", LocalDate.now());
 			account.addTransaction(transaction2);
 			transactionRepository.save(transaction2);
+
+			//
 
 
 			//Agrego dos clientes nuevos
