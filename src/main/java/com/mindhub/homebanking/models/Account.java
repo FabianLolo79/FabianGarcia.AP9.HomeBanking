@@ -5,6 +5,8 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Account {
@@ -19,6 +21,9 @@ public class Account {
     private LocalDate creationDate;
     private double balance;
 
+    @OneToMany(mappedBy="accountId", fetch=FetchType.EAGER)
+    private Set<Transaction> transactions = new HashSet<>();
+
     public Account() {
     }
     public Account(String number, LocalDate creationDate, double balance) {
@@ -27,56 +32,61 @@ public class Account {
         this.balance = balance;
     }
 
-    public long getId() {
+    public long getId()
+    {
         return id;
     }
 
-    public String getNumber() {
+    public String getNumber()
+    {
         return number;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(String number)
+    {
         this.number = number;
     }
 
-    public LocalDate getCreationDate() {
+    public LocalDate getCreationDate()
+    {
         return creationDate;
     }
 
-    public void setCreationDate(LocalDate creationDate) {
+    public void setCreationDate(LocalDate creationDate)
+    {
         this.creationDate = creationDate;
     }
 
-    public double getBalance() {
+    public double getBalance()
+    {
         return balance;
     }
 
-    public void setBalance(double balance) {
+    public void setBalance(double balance)
+    {
         this.balance = balance;
     }
 
 
-    public Client getClientId() {
+    public Client getClientId()
+
+    {
         return clientId;
     }
 
-    public void setClientId(Client clientId) {
+    public void setClientId(Client clientId)
+    {
         this.clientId = clientId;
     }
 
+    public Set<Transaction> getTransactions()
+    {
+        return transactions;
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public void addTransaction(Transaction transaction)
+    {
+        transaction.setAccountId(this);  // setClientId(this);
+        transactions.add(transaction);
+    }
 }

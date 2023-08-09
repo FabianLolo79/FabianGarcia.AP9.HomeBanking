@@ -28,23 +28,28 @@ public class ClientDTO {
                         .collect(Collectors.toSet());
     }
 
-    public long getId() {
+    public long getId()
+    {
         return id;
     }
 
-    public String getFirstName() {
+    public String getFirstName()
+    {
         return firstName;
     }
 
-    public String getLastName() {
+    public String getLastName()
+    {
         return lastName;
     }
 
-    public String getEmail() {
+    public String getEmail()
+    {
         return email;
     }
 
-    public Set<AccountDTO> getAccounts() {
+    public Set<AccountDTO> getAccounts()
+    {
         return accounts;
     }
 }
