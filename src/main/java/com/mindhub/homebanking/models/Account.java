@@ -67,7 +67,6 @@ public class Account {
         this.balance = balance;
     }
 
-
     public Client getClientId()
 
     {
