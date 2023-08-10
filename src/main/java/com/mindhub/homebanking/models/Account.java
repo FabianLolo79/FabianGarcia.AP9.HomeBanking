@@ -10,9 +10,6 @@ import java.util.Set;
 
 @Entity
 public class Account {
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="clientId") //campo nuevo que se crea en la BD y aparece null aún
-    private Client clientId;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name = "native", strategy = "native")
@@ -21,6 +18,9 @@ public class Account {
     private LocalDate creationDate;
     private double balance;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="clientId") //campo nuevo que se crea en la BD y aparece null aún
+    private Client clientId;
     @OneToMany(mappedBy="account", fetch=FetchType.EAGER)
     private Set<Transaction> transactions = new HashSet<>();
 

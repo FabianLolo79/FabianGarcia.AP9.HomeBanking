@@ -7,9 +7,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import java.util.List;
 
 @RepositoryRestResource
-public interface ClientRepository extends JpaRepository<Client, Long> {
-    //List<Client> findByLastName(String lastName);
-}
+public interface ClientRepository extends JpaRepository<Client, Long> { }
 
 
 
