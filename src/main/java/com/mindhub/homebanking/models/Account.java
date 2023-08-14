@@ -19,7 +19,7 @@ public class Account {
     private double balance;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="clientId") //campo nuevo que se crea en la BD y aparece null aún
+    @JoinColumn(name="clientId")
     private Client clientId;
     @OneToMany(mappedBy="account", fetch=FetchType.EAGER)
     private Set<Transaction> transactions = new HashSet<>();

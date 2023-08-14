@@ -1,18 +1,15 @@
 package com.mindhub.homebanking;
 
-import com.mindhub.homebanking.models.Account;
-import com.mindhub.homebanking.models.Client;
-import com.mindhub.homebanking.models.Transaction;
-import com.mindhub.homebanking.models.TransactionType;
-import com.mindhub.homebanking.repositories.AccountRepository;
-import com.mindhub.homebanking.repositories.ClientRepository;
-import com.mindhub.homebanking.repositories.TransactionRepository;
+import com.mindhub.homebanking.models.*;
+import com.mindhub.homebanking.repositories.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.List;
 
 @SpringBootApplication
 public class HomebankingApplication {
@@ -25,7 +22,9 @@ public class HomebankingApplication {
 	@Bean
 	public CommandLineRunner initData(ClientRepository clientRepository
 																		, AccountRepository accountRepository
-																		,	TransactionRepository transactionRepository)
+																		, TransactionRepository transactionRepository
+																		, LoanRepository loanRepository
+																		, ClientLoanRepository clientLoanRepository)
 	{
 		return (args) ->
 		{
@@ -61,6 +60,23 @@ public class HomebankingApplication {
 			Transaction transaction4 = new Transaction(TransactionType.CREDIT, 600, "recibo de palangana vendida", LocalDate.now());
 			account1.addTransaction(transaction4);
 			transactionRepository.save(transaction4);
+
+			//creación de datos de prueba de loan
+			Loan loan = new Loan("Hipotecario", 500000, List.of(12, 24, 36,48,60));
+			loanRepository.save(loan);
+			Loan loan1 = new Loan("Personal", 100000, List.of(24, 12, 24));
+			loanRepository.save(loan1);
+			Loan loan2 = new Loan("Automotriz", 300000, List.of(6, 12, 24,36));
+			loanRepository.save(loan2);
+
+			//PRUEBA de clientLoan
+			ClientLoan clientLoan = new ClientLoan(400000, 60, client, loan);
+			client.addClientLoan(clientLoan);
+			clientLoanRepository.save(clientLoan);
+
+			ClientLoan clientLoan1 = new ClientLoan(50000, 12, client, loan1);
+			client.addClientLoan(clientLoan1);
+			clientLoanRepository.save(clientLoan);
 
 			//Agrego dos clientes nuevos
 			Client client1 = new Client("Fabian", "Garcia", "fabianiio@gmail.com");

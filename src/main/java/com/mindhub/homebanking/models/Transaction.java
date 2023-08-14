@@ -18,7 +18,7 @@ public class Transaction {
     private LocalDate date;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="accountId") //campo nuevo que se crea en la BD y aparece null aún
+    @JoinColumn(name="accountId")
     private Account account;
 
 
