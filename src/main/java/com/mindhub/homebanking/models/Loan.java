@@ -20,7 +20,7 @@ public class Loan {
     @Column(name="payments")// +o payment_id???
     private List<Integer> payments = new ArrayList<>(); // payments = cuotas
 
-    @OneToMany(mappedBy = "loanId", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "loan", fetch = FetchType.EAGER)
     private Set<ClientLoan> clients = new HashSet<>();
 
     public Loan() {
@@ -66,11 +66,6 @@ public class Loan {
 
     public void setClients(Set<ClientLoan> clients) {
         this.clients = clients;
-    }
-
-    public void addClientLoan(ClientLoan clientLoan){
-        clientLoan.setLoanId(this);
-        clients.add(clientLoan); //dudo
     }
 }
 

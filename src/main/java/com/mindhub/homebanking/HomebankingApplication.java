@@ -8,7 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.List;
 
 @SpringBootApplication
@@ -71,12 +70,10 @@ public class HomebankingApplication {
 
 			//PRUEBA de clientLoan
 			ClientLoan clientLoan = new ClientLoan(400000, 60, client, loan);
-			client.addClientLoan(clientLoan);
 			clientLoanRepository.save(clientLoan);
 
 			ClientLoan clientLoan1 = new ClientLoan(50000, 12, client, loan1);
-			client.addClientLoan(clientLoan1);
-			clientLoanRepository.save(clientLoan);
+			clientLoanRepository.save(clientLoan1);
 
 			//Agrego dos clientes nuevos
 			Client client1 = new Client("Fabian", "Garcia", "fabianiio@gmail.com");
@@ -89,12 +86,6 @@ public class HomebankingApplication {
 			clientRepository.save(new Client("Paz", "Laguens", "pachula@gmail.com"));
 		};
 	}
-
-
-
-
-
-
 }
 
 

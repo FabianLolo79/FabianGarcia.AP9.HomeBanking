@@ -20,7 +20,7 @@ public class Account {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="clientId")
-    private Client clientId;
+    private Client client;
     @OneToMany(mappedBy="account", fetch=FetchType.EAGER)
     private Set<Transaction> transactions = new HashSet<>();
 
@@ -67,15 +67,12 @@ public class Account {
         this.balance = balance;
     }
 
-    public Client getClientId()
-
-    {
-        return clientId;
+    public Client getClient() {
+        return client;
     }
 
-    public void setClientId(Client clientId)
-    {
-        this.clientId = clientId;
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public Set<Transaction> getTransactions()

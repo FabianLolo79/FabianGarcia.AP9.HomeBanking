@@ -16,10 +16,10 @@ public class Client {
     private String lastName;
     private String email;
 
-    @OneToMany(mappedBy="clientId", fetch=FetchType.EAGER)
+    @OneToMany(mappedBy="client", fetch=FetchType.EAGER)
     private Set<Account> accounts = new HashSet<>();
 
-    @OneToMany(mappedBy = "clientId", fetch = FetchType.EAGER)// mappedBy busca la propiedad clientId en la clase ClientLoan
+    @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)// mappedBy busca la propiedad client en la clase ClientLoan
     private Set<ClientLoan> loans = new HashSet<>();
 
     public Client () {  }
@@ -70,7 +70,7 @@ public class Client {
 
     public void addAccount(Account account)
     {
-        account.setClientId(this);  // setClientId(this);
+        account.setClient(this);  // setClientId(this);
         accounts.add(account);
     }
 
@@ -80,10 +80,5 @@ public class Client {
 
     public void setLoans(Set<ClientLoan> loans) {
         this.loans = loans;
-    }
-
-    public void addClientLoan(ClientLoan clientLoan){
-        clientLoan.setClientId(this);
-        loans.add(clientLoan);
     }
 }
