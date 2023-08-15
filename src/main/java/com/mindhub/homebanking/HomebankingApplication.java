@@ -83,6 +83,7 @@ public class HomebankingApplication {
 															, 456
 															, LocalDate.now()
 															, LocalDate.now().plusYears(5));
+				client.addCards(card);
 				cardRepository.save(card);
 
 				Card card1 = new Card(client.getFirstName() + " " + client.getLastName()
@@ -92,6 +93,7 @@ public class HomebankingApplication {
 															, 789
 															, LocalDate.now()
 															, LocalDate.now().plusYears(5));
+				client.addCards(card1);
 				cardRepository.save(card1);
 
 			//Agrego dos clientes nuevos
@@ -106,6 +108,7 @@ public class HomebankingApplication {
 															, 147
 															, LocalDate.now()
 															, LocalDate.now().plusYears(5));
+				client1.addCards(card2);
 				cardRepository.save(card2);
 
 				Client client2 = new Client("Paloma", "Laguens", "palomaaaa@gmail.com");
