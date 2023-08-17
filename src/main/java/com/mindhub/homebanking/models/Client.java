@@ -20,7 +20,7 @@ public class Client {
     private Set<Account> accounts = new HashSet<>();
 
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)// mappedBy busca la propiedad client en la clase ClientLoan
-    private Set<ClientLoan> loans = new HashSet<>();
+    private Set<ClientLoan> clientLoans = new HashSet<>();
 
     @OneToMany(mappedBy = "client", fetch = FetchType.EAGER)
     private Set<Card> cards = new HashSet<>();
@@ -78,11 +78,11 @@ public class Client {
     }
 
     public Set<ClientLoan> getLoans() {
-        return loans;
+        return clientLoans;
     }
 
     public void setLoans(Set<ClientLoan> loans) {
-        this.loans = loans;
+        this.clientLoans = loans;
     }
 
     public Set<Card> getCards() {
@@ -97,4 +97,26 @@ public class Client {
         card.setClient(this);
         cards.add(card);
     }
+
+    public void addClientLoan(ClientLoan clientLoan) {
+        clientLoan.setClient(this);
+        clientLoans.add(clientLoan);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

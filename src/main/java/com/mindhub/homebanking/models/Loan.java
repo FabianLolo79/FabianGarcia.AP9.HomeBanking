@@ -67,6 +67,11 @@ public class Loan {
     public void setClients(Set<ClientLoan> clients) {
         this.clients = clients;
     }
+
+    public void addClientLoans(ClientLoan clientLoan){
+        clientLoan.setLoan(this);
+        clients.add(clientLoan);
+    }
 }
 
 

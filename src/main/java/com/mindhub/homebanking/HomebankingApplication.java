@@ -69,10 +69,14 @@ public class HomebankingApplication {
 				loanRepository.save(loan2);
 
 			//PRUEBA de clientLoan
-				ClientLoan clientLoan = new ClientLoan(400000, 60, client, loan);
+				ClientLoan clientLoan = new ClientLoan(400000, 60);
+				client.addClientLoan(clientLoan);
+				loan.addClientLoans(clientLoan);
 				clientLoanRepository.save(clientLoan);
 
-				ClientLoan clientLoan1 = new ClientLoan(50000, 12, client, loan1);
+				ClientLoan clientLoan1 = new ClientLoan(50000, 12);
+			  client.addClientLoan(clientLoan1);
+				loan2.addClientLoans(clientLoan1);
 				clientLoanRepository.save(clientLoan1);
 
 			//PRUEBA de Cards a MELBA
