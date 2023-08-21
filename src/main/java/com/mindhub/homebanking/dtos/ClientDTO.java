@@ -13,10 +13,10 @@ public class ClientDTO {
     private String firstName;
     private String lastName;
     private String email;
+
+    // propiedades de relaciones
     private Set<AccountDTO> accounts;
-
     private Set<ClientLoanDTO> loans;
-
     private Set<CardDTO> cards;
 
     public ClientDTO(Client client)

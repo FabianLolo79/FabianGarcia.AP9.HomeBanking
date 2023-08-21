@@ -2,10 +2,12 @@ package com.mindhub.homebanking;
 
 import com.mindhub.homebanking.models.*;
 import com.mindhub.homebanking.repositories.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -13,6 +15,8 @@ import java.util.List;
 @SpringBootApplication
 public class HomebankingApplication {
 
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	public static void main(String[] args)
 	{
 		SpringApplication.run(HomebankingApplication.class, args);
@@ -29,7 +33,7 @@ public class HomebankingApplication {
 		return (args) ->
 		{
 			//instancia del primer client
-				Client client =  new Client("Melba", "Morel", "melba@mindhub.com");
+				Client client =  new Client("Melba", "Morel", "melba@mindhub.com", "123");
 				clientRepository.save(client);
 
 			//intancio las 2 cuentas: account and account1
@@ -101,7 +105,7 @@ public class HomebankingApplication {
 				cardRepository.save(card1);
 
 			//Agrego dos clientes nuevos
-				Client client1 = new Client("Fabian", "Garcia", "fabianiio@gmail.com");
+				Client client1 = new Client("Fabian", "Garcia", "fabianiio@gmail.com", passwordEncoder.encode("456"));
 				clientRepository.save(client1);
 
 			//Card para Client1
@@ -115,11 +119,13 @@ public class HomebankingApplication {
 				client1.addCards(card2);
 				cardRepository.save(card2);
 
-				Client client2 = new Client("Paloma", "Laguens", "palomaaaa@gmail.com");
+				//
+
+				Client client2 = new Client("Paloma", "Laguens", "palomaaaa@gmail.com", passwordEncoder.encode("789"));
 				clientRepository.save(client2);
 
 			//crea otro cliente en 1 sola línea!
-				clientRepository.save(new Client("Paz", "Laguens", "pachula@gmail.com"));
+				clientRepository.save(new Client("Paz", "Laguens", "pachula@gmail.com", passwordEncoder.encode("369")));
 		};
 	}
 }
