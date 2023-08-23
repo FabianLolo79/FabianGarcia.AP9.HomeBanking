@@ -15,12 +15,13 @@ import java.util.List;
 @SpringBootApplication
 public class HomebankingApplication {
 
-	@Autowired
-	private PasswordEncoder passwordEncoder;
 	public static void main(String[] args)
 	{
 		SpringApplication.run(HomebankingApplication.class, args);
 	}
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Bean
 	public CommandLineRunner initData(ClientRepository clientRepository
@@ -33,7 +34,8 @@ public class HomebankingApplication {
 		return (args) ->
 		{
 			//instancia del primer client
-				Client client =  new Client("Melba", "Morel", "melba@mindhub.com", "123");
+				Client client =  new Client("Melba", "Morel", "melba@mindhub.com"
+																		, passwordEncoder.encode("123"));
 				clientRepository.save(client);
 
 			//intancio las 2 cuentas: account and account1
@@ -105,7 +107,8 @@ public class HomebankingApplication {
 				cardRepository.save(card1);
 
 			//Agrego dos clientes nuevos
-				Client client1 = new Client("Fabian", "Garcia", "fabianiio@gmail.com", passwordEncoder.encode("456"));
+				Client client1 = new Client("Fabian", "Garcia", "fabianiio@gmail.com"
+																		, passwordEncoder.encode("456"));
 				clientRepository.save(client1);
 
 			//Card para Client1
@@ -121,11 +124,13 @@ public class HomebankingApplication {
 
 				//
 
-				Client client2 = new Client("Paloma", "Laguens", "palomaaaa@gmail.com", passwordEncoder.encode("789"));
+				Client client2 = new Client("Paloma", "Laguens", "palomaaaa@gmail.com"
+																		, passwordEncoder.encode("789"));
 				clientRepository.save(client2);
 
 			//crea otro cliente en 1 sola línea!
-				clientRepository.save(new Client("Paz", "Laguens", "pachula@gmail.com", passwordEncoder.encode("369")));
+				clientRepository.save(new Client("Paz", "Laguens", "pachula@gmail.com"
+																					, passwordEncoder.encode("369")));
 		};
 	}
 }
